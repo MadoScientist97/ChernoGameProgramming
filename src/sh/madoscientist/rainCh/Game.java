@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private JFrame frame;
     private boolean running = false;
-
+    private int movementSpeed = 1;
     private Screen screen;
     private BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
@@ -79,14 +79,30 @@ public class Game extends Canvas implements Runnable {
   public void update() {
       // y++;
       key.update();
-      if (key.up)
-          y -= 2;
-      if (key.down)
-          y += 2;
-      if (key.left)
-          x -= 2;
-      if (key.right)
-          x += 2;
+      if (key.up && key.left) {
+          x -= movementSpeed;
+          y -= movementSpeed;
+      }
+      else if (key.up && key.right) {
+          x += movementSpeed;
+          y -= movementSpeed;
+      }
+      else if (key.down && key.left) {
+          x -= movementSpeed;
+          y += movementSpeed;
+      }
+      else if (key.down && key.right) {
+          x += movementSpeed;
+          y += movementSpeed;
+      }
+      else if (key.up)
+          y -= movementSpeed;
+      else if (key.down)
+          y += movementSpeed;
+      else if (key.left)
+          x -= movementSpeed;
+      else if (key.right)
+          x += movementSpeed;
   }
 
   public void render() {

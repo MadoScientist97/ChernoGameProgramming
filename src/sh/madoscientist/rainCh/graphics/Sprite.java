@@ -13,6 +13,7 @@ public class Sprite {
         this.x = x * SIZE;
         this.y = y * SIZE;
         this.sheet = sheet;
+        load();
     }
 
     public void load() {
